@@ -16,7 +16,7 @@ Starts the JDBCX server container. Check out [here](https://github.com/jdbcx/jdb
 
 ```bash
 # Start the server
-docker run --rm --name bridge -d -p8080:8080 jdbcx/jdbcx:main-nightly server
+docker run --rm --name bridge -d -p8080:8080 jdbcx/jdbcx server
 # Test if the server if ready
 curl -v 'http://localhost:8080/config'
 # Check server logs
