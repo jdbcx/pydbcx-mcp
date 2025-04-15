@@ -9,7 +9,6 @@ keywords = ["automation", "database", "jdbc", "mcp", "llm"]
 license = { text = "Apache License (2.0)" }
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Intended Audience :: Data Analysts",
     "Intended Audience :: Developers",
     "Intended Audience :: System Administrators",
     "License :: OSI Approved :: Apache Software License",
