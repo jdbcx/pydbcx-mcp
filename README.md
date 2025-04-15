@@ -2,7 +2,6 @@
 
 pydbcx-mcp is a Python implementation of MCP server for enabling communication with diverse data sources via JDBCX server.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)
 ![MCP Protocol](https://img.shields.io/badge/MCP-Compatible-green)
 [![smithery badge](https://smithery.ai/badge/@jdbcx/pydbcx-mcp)](https://smithery.ai/server/@jdbcx/pydbcx-mcp)
