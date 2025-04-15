@@ -114,6 +114,15 @@ def post(
 def list_database_servers(
     query_timeout_seconds: int = DEFAULT_QUERY_TIMEOUT_SECONDS,
 ) -> str:
+    """List all available database servers configured in the JDBCX server.
+
+    Args:
+        query_timeout_seconds (int, optional): Maximum time to wait for the request in seconds.
+            Defaults to DEFAULT_QUERY_TIMEOUT_SECONDS.
+
+    Returns:
+        str: JSON string containing the list of database servers along with their corresponding descriptions
+    """
     return get("config/db", timeout_seconds=query_timeout_seconds)
 
 
@@ -122,6 +131,16 @@ def inspect_database_server(
     database_server: str,
     query_timeout_seconds: int = DEFAULT_QUERY_TIMEOUT_SECONDS,
 ) -> str:
+    """Get detailed configuration information for a specific database server.
+
+    Args:
+        database_server (str): The name of the database server to inspect
+        query_timeout_seconds (int, optional): Maximum time to wait for the request in seconds.
+            Defaults to DEFAULT_QUERY_TIMEOUT_SECONDS.
+
+    Returns:
+        str: JSON string containing the detailed configuration of the specified database server
+    """
     return get(f"config/db/{database_server}", timeout_seconds=query_timeout_seconds)
 
 
@@ -133,17 +152,22 @@ def query_database(
     data_format: Literal["md", "jsonl", "csv"] = DEFAULT_DATA_FORMAT,
     rows_limit: int = DEFAULT_ROWS_LIMIT,
 ) -> str:
-    """Execute a SQL query against a specified database server and return the results.
+    """Execute a SQL query against a specified database server and return formatted results.
 
     Args:
-        database_server: The name of the database server to query
-        sql_query: The SQL query to execute (will be wrapped in a SELECT statement)
-        query_timeout_seconds: Maximum time to wait for query execution (default: 10)
-        data_format: Format for returned data - "md", "jsonl" or "csv" (default: csv)
-        rows_limit: Maximum number of rows to return (default: 10)
+        database_server (str): The name of the database server to query (must be registered)
+        sql_query (str): The SQL query to execute (will be wrapped in a SELECT statement)
+        query_timeout_seconds (int, optional): Maximum time in seconds to wait for query execution.
+            Defaults to DEFAULT_QUERY_TIMEOUT_SECONDS.
+        data_format (str, optional): Output format for results. Options:
+            "md" - Markdown table format
+            "jsonl" - JSON Lines format (one JSON object per row)
+            "csv" - Comma-separated values with header row
+            Defaults to DEFAULT_DATA_FORMAT.
+        rows_limit (int, optional): Maximum number of rows to return. Defaults to DEFAULT_ROWS_LIMIT.
 
     Returns:
-        Query results as a string in the specified format
+        str: Query results as a string in the specified format
     """
     sql = "SELECT * FROM {{ table.db.%s: %s }} LIMIT %d" % (
         database_server,
