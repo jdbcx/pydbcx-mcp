@@ -8,6 +8,14 @@ pydbcx-mcp is a Python implementation of MCP server for enabling communication w
 
 ## Installation
 
+### Installing via Smithery
+
+To install Python JDBCX Data Connector for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@jdbcx/pydbcx-mcp):
+
+```bash
+npx -y @smithery/cli install @jdbcx/pydbcx-mcp --client claude
+```
+
 ### Start JDBCX server
 
 Starts the JDBCX server container. Check out [here](https://github.com/jdbcx/jdbcx/tree/main/server) for more information.
