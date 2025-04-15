@@ -25,7 +25,13 @@ docker stop bridge
 
 ### Configure MCP server
 
-Add MCP server into your JSON config file.
+To install JDBCX MCP server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@jdbcx/pydbcx-mcp):
+
+```bash
+npx -y @smithery/cli install @jdbcx/pydbcx-mcp --client claude
+```
+
+Alternatively, add the MCP server into your JSON config file.
 
 > Development/Unpublished Server Configuration
 
