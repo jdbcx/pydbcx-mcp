@@ -7,7 +7,7 @@ pydbcx-mcp is a Python implementation of MCP server for enabling communication w
 [![smithery badge](https://smithery.ai/badge/@jdbcx/pydbcx-mcp)](https://smithery.ai/server/@jdbcx/pydbcx-mcp)
 [![Verified on MseeP](https://mseep.ai/badge.svg)](https://mseep.ai/app/01a1230d-7407-4cd0-bc80-292b6f1079d6)
 
-![image](https://gist.github.com/user-attachments/assets/2c64d73d-3b7d-452c-b533-0caa76cf7d16)
+![image](https://github.com/user-attachments/assets/a50499af-f3a8-4696-99a2-1b8c0bfbd5ef)
 
 ## Installation
 
