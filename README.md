@@ -49,6 +49,7 @@ Alternatively, add the MCP server into your JSON config file.
         "pydbcx-mcp"
       ],
       "env": {
+        "DEFAULT_QUERY_TIMEOUT_SECONDS": "30",
         "JDBCX_SERVER_URL": "http://localhost:8080/",
         "JDBCX_SERVER_TOKEN": "",
         "MAX_ROWS_LIMIT": "5000"
@@ -86,7 +87,7 @@ Alternatively, add the MCP server into your JSON config file.
 }
 ```
 
-Note: remember to start the SSE server first by `JDBCX_SERVER_URL=http://localhost:8080/ uvx pydbcx-mcp --transport sse`.
+Note: remember to start the SSE server first by `JDBCX_SERVER_URL=http://localhost:8080/ DEFAULT_QUERY_TIMEOUT_SECONDS=30 uvx pydbcx-mcp --transport sse`.
 
 ## Configuration
 

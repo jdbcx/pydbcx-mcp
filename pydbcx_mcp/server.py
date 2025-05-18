@@ -131,7 +131,7 @@ def inspect_database_server(
     database_server: str,
     query_timeout_seconds: int = DEFAULT_QUERY_TIMEOUT_SECONDS,
 ) -> str:
-    """Get detailed configuration information for a specific database server.
+    """Get structural metadata for a specific database server, including its catalogs, schemas, and tables. May take minutes for large servers.
 
     Args:
         database_server (str): The name of the database server to inspect
@@ -139,7 +139,7 @@ def inspect_database_server(
             Defaults to DEFAULT_QUERY_TIMEOUT_SECONDS.
 
     Returns:
-        str: JSON string containing the detailed configuration of the specified database server
+        str: JSON string containing the structural metadata of the specified database server, including its catalogs, schemas, and tables
     """
     return get(f"config/db/{database_server}", timeout_seconds=query_timeout_seconds)
 
@@ -152,7 +152,7 @@ def query_database(
     data_format: Literal["md", "jsonl", "csv"] = DEFAULT_DATA_FORMAT,
     rows_limit: int = DEFAULT_ROWS_LIMIT,
 ) -> str:
-    """Execute a SQL query against a specified database server and return formatted results.
+    """Execute a SQL query against a specified database server and return formatted results. Maybe slow for complex queries.
 
     Args:
         database_server (str): The name of the database server to query (must be registered)
