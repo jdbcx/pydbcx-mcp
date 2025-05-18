@@ -99,6 +99,7 @@ Configure the server using environment variables:
 | `JDBCX_LOG_LEVEL`               | Log level                              | `DEBUG`                 |
 | `JDBCX_SERVER_URL`              | JDBCX server URL                       | `http://localhost:8080` |
 | `JDBCX_SERVER_TOKEN`            | JDBCX server access token              | None                    |
+| `DEFAULT_ACCEPT_ENCODING`       | Default accept-encoding                | `identity`              |
 | `DEFAULT_QUERY_TIMEOUT_SECONDS` | Default query timeout (seconds)        | `10`                    |
 | `DEFAULT_DATA_FORMAT`           | Default data format (md, jsonl, csv)   | `csv`                   |
 | `DEFAULT_ROWS_LIMIT`            | Default number of rows can be returned | `100`                   |

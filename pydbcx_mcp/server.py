@@ -18,6 +18,7 @@ logging.basicConfig(
 JDBCX_SERVER_URL = os.getenv("JDBCX_SERVER_URL", "http://localhost:8080").rstrip("/")
 JDBCX_SERVER_TOKEN = os.getenv("JDBCX_SERVER_TOKEN", "")
 
+DEFAULT_ACCEPT_ENCODING = os.getenv("DEFAULT_DATA_FORMAT", "identity")
 DEFAULT_QUERY_TIMEOUT_SECONDS = int(os.getenv("DEFAULT_QUERY_TIMEOUT_SECONDS", 10))
 DEFAULT_DATA_FORMAT = os.getenv("DEFAULT_DATA_FORMAT", "csv")
 DEFAULT_ROWS_LIMIT = int(os.getenv("DEFAULT_ROWS_LIMIT", 100))
@@ -31,6 +32,15 @@ mcp = FastMCP(
     port=os.getenv("MCP_SERVER_PORT", "8000"),
     api_key=os.getenv("MCP_API_KEY", ""),
 )
+
+
+def get_request_headers():
+    headers = (
+        {"accept-encoding": DEFAULT_ACCEPT_ENCODING} if DEFAULT_ACCEPT_ENCODING else {}
+    )
+    if JDBCX_SERVER_TOKEN:
+        headers["Authorization"] = f"Bearer {JDBCX_SERVER_TOKEN}"
+    return headers
 
 
 def get(
@@ -55,14 +65,12 @@ def get(
     response = httpx.get(
         url,
         params=params,
-        headers=(
-            {"Authorization": f"Bearer {JDBCX_SERVER_TOKEN}"}
-            if JDBCX_SERVER_TOKEN
-            else None
-        ),
+        headers=get_request_headers(),
         timeout=timeout_seconds,
     )
-    response.raise_for_status()
+
+    if not response.is_success:
+        raise httpx.HTTPError(response.text)
     return response.text
 
 
@@ -95,18 +103,15 @@ def post(
     response = httpx.post(
         url,
         params=params,
-        headers=(
-            {"Authorization": f"Bearer {JDBCX_SERVER_TOKEN}"}
-            if JDBCX_SERVER_TOKEN
-            else None
-        ),
+        headers=get_request_headers(),
         content=body,
         timeout=timeout_seconds,
     )
 
     # logging.debug(f"Received response from the database: {response}")
 
-    response.raise_for_status()
+    if not response.is_success:
+        raise httpx.HTTPError(response.text)
     return response.text
 
 
